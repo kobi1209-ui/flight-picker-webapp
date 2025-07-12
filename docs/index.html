@@ -5,47 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Select Flight Date</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
       text-align: center;
-      margin-top: 60px;
+      padding: 40px 20px;
     }
-    input, button {
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 30px;
+      color: #222;
+    }
+
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      max-width: 350px;
+      margin: auto;
+    }
+
+    input[type="date"] {
       padding: 12px;
-      font-size: 18px;
-      margin: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+      margin-bottom: 20px;
     }
+
     button {
+      padding: 12px 24px;
+      font-size: 16px;
       background-color: #0088cc;
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0071ad;
     }
   </style>
 </head>
 <body>
-  <h2>📅 Pick your flight date</h2>
-  <input type="date" id="flightDate" />
-  <br />
-  <button onclick="sendDate()">Select</button>
+  <div class="container">
+    <h2>📅 Pick your flight date</h2>
+    <input type="date" id="flightDate" />
+    <button onclick="sendDate()">Select</button>
+  </div>
 
   <script>
-    let tg = window.Telegram.WebApp;
-    tg.expand();
-    tg.ready();
-
     function sendDate() {
       const selected = document.getElementById("flightDate").value;
       if (!selected) {
         alert("Please pick a date first");
         return;
       }
-      tg.sendData(selected);
-      tg.close();
+      Telegram.WebApp.sendData(selected);
+      Telegram.WebApp.close();
     }
   </script>
 </body>
 </html>
-
-Add docs/index.html for Telegram WebApp
