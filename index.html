@@ -31,14 +31,18 @@
   <button onclick="sendDate()">Select</button>
 
   <script>
+    let tg = window.Telegram.WebApp;
+    tg.expand();
+    tg.ready();
+
     function sendDate() {
       const selected = document.getElementById("flightDate").value;
       if (!selected) {
         alert("Please pick a date first");
         return;
       }
-      Telegram.WebApp.sendData(selected);
-      Telegram.WebApp.close();
+      tg.sendData(selected);  // Send selected date back to bot
+      tg.close();             // Close WebApp
     }
   </script>
 </body>
